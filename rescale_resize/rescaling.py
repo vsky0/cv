@@ -8,20 +8,32 @@ def rescaled(frame, scale=0.75):
 
     return cv.resize(frame, dimensions, interpolation=cv.INTER_AREA)
 
-# reading video
+# video
 
-capture = cv.VideoCapture('data/videos/wikipedia_donate.mp4')
+def rescale_video():
+    capture = cv.VideoCapture('data/videos/wikipedia_donate.mp4')
 
-while True:
-    is_true, frame = capture.read()
+    while True:
+        is_true, frame = capture.read()
 
-    frame_resized = rescaled(frame)
-    cv.imshow('Video rescaled', frame_resized)
+        frame_resized = rescaled(frame)
+        cv.imshow('Video rescaled', frame_resized)
 
-    cv.imshow('Video', frame)
+        cv.imshow('Video', frame)
 
-    if cv.waitKey(20) & 0xFF==ord('d'):
-        break
+        if cv.waitKey(20) & 0xFF==ord('d'):
+            break
 
-capture.release()
-cv.destroyAllWindows()
+    capture.release()
+    cv.destroyAllWindows()
+
+# image
+
+def rescale_image():
+    image = cv.imread('data/photos/cell.jpg')
+    rescaled_image = rescaled(image, scale=0.5)
+    cv.imshow('Rescaled image', rescaled_image)
+    cv.imshow('original image', image)
+    cv.waitKey(0)
+
+rescale_image()
