@@ -13,15 +13,15 @@ def translate_image(image, x:int, y:int):
     Returns:
         transalted image
     """
-    trans_kernel = np.float32([1, 0, x], [0, 1, y])
+    trans_kernel = np.float32([[1, 0, x], [0, 1, y]])
     dimensions = (image.shape[1], image.shape[0]) #width, height
-    return cv.wrapAffine(image, trans_kernel, dimensions)
+    return cv.warpAffine(image, trans_kernel, dimensions)
 
 if __name__ == '__main__':
-    img = cv.imread('data/photos/simpson1.jpg')
+    img = cv.imread('computer_vision/data/photos/simpsons1.jpg')
     cv.imshow('SIMPSON original', img)
 
-    timg = translate_image(image=img, x=50, y=50)
+    timg = translate_image(image=img, x=50, y=-50)
     cv.imshow('SIMPSON TRANSLATED', timg)
 
     cv.waitKey(0)
