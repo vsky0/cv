@@ -8,8 +8,8 @@ def translate_image(image, x:int, y:int):
     uses a kernel to apply translation.
     Args:
         image: image you want to translate.
-        x: number of pixels to translate along x-axis.
-        y: number of pixels to translate along y-axis.
+        x: number of pixels to translate along x-axis. -ve x --> left, +ve x -->right
+        y: number of pixels to translate along y-axis. -ve y --> up , +ve y -->down.
     Returns:
         transalted image
     """
@@ -21,7 +21,7 @@ if __name__ == '__main__':
     img = cv.imread('computer_vision/data/photos/simpsons1.jpg')
     cv.imshow('SIMPSON original', img)
 
-    timg = translate_image(image=img, x=50, y=-50)
+    timg = translate_image(image=img, x=50, y=50)
     cv.imshow('SIMPSON TRANSLATED', timg)
 
     cv.waitKey(0)
