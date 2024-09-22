@@ -4,7 +4,7 @@ import cv2 as cv
 # in the image, contour detection is used in object detection,
 # image recognition
 
-img = cv.imread('../data/photos/geometric_shapes.jpg')
+img = cv.imread('computer_vision/data/photos/geometric_shapes.jpg')
 
 # first convert the image into gray
 
@@ -20,3 +20,5 @@ cv.imshow('edges in the image', img_edges)
 
 contours, hierarchies = cv.findContours(img_edges, cv.RETR_LIST, cv.CHAIN_APPROX_SIMPLE)
 print(f"the number of countours find={len(contours)}")
+
+cv.waitKey(5000)
