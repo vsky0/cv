@@ -20,12 +20,17 @@ cv.imshow('blur image', blur_img)
 img_edges = cv.Canny(img, 125, 175) # here the 125, 175 are the threshold values.
 cv.imshow('edges in the image', img_edges)
 
-# now apply findContours method to img_edges
+# contours with thresholding
+ret, thresh = cv.threshold(gray_img, 125, 255, cv.THRESH_BINARY)
+cv.imshow('thresholded', thresh)
 
-contours, hierarchies = cv.findContours(img_edges, cv.RETR_LIST, cv.CHAIN_APPROX_NONE)
+# now apply findContours method to img_edges
+contours, hierarchies = cv.findContours(thresh, cv.RETR_LIST, cv.CHAIN_APPROX_NONE)
 print(f"the number of contours in image={len(contours)}")
 
-cv.waitKey(5000)
+cv.waitKey(0)
 
 # applying blur to images reduces noise and provides only significant contors, while unblurred image 
 # can have more contours.
+
+# using the thresholding to find the no. of contours(171) is less by 3 of canny edge(174).
