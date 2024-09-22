@@ -1,4 +1,5 @@
 import cv2 as cv
+import numpy as np
 
 # contours are the borders/boundaries of the objects
 # in the image, contour detection is used in object detection,
@@ -26,7 +27,24 @@ cv.imshow('thresholded', thresh)
 
 # now apply findContours method to img_edges
 contours, hierarchies = cv.findContours(thresh, cv.RETR_LIST, cv.CHAIN_APPROX_NONE)
-print(f"the number of contours in image={len(contours)}")
+print(f"the number of contours using thresholding = {len(contours)}")
+
+contours1, hierarchies1 = cv.findContours(img_edges, cv.RETR_LIST, cv.CHAIN_APPROX_NONE)
+print(f"the number of contours using canny edge =  {len(contours1)}")
+
+# visualize contours on blank image
+
+# plotting contours using thresholding
+black = np.zeros(img.shape, dtype='uint8')
+
+cv.drawContours(black, contours, -1, (255, 0, 0), 1)
+cv.imshow('threshold contours on black', black)
+
+# plotting contours using edge
+black1 = np.zeros(img.shape, dtype='uint8')
+
+cv.drawContours(black1, contours1, -1, (255, 0, 0), 1)
+cv.imshow('contours using edge', black1)
 
 cv.waitKey(0)
 
@@ -34,3 +52,4 @@ cv.waitKey(0)
 # can have more contours.
 
 # using the thresholding to find the no. of contours(171) is less by 3 of canny edge(174).
+# it is preferred to use edges than thresholding for contours, it depends.
