@@ -7,7 +7,7 @@ s = 0 # for the default camera
 if len(sys.argv)>1:
     s = sys.argv[1]
 
-soruce = cv.VideoCapture(s)
+source = cv.VideoCapture(s)
 
 window_name = 'camera'
 cv.namedWindow(window_name, cv.WINDOW_NORMAL)
@@ -19,4 +19,5 @@ while cv.waitKey(1) != 27: #escape
     cv.imshow(window_name,frame)
 
 source.release()
-cv.destroyAllWindows(window_name)
+cv.destroyAllWindows()
+# cv.destroyWindow(window_name)
